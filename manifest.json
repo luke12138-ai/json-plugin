@@ -1,0 +1,54 @@
+{
+  "manifest_version": 3,
+  "name": "JSON 工具",
+  "description": "独立的 JSON 格式化扩展，支持打开工具页和自动格式化 JSON 页面。",
+  "version": "1.0.0",
+  "minimum_chrome_version": "88.0",
+  "action": {
+    "default_title": "打开 JSON 工具",
+    "default_icon": "images/icon-logo-json.png"
+  },
+  "background": {
+    "service_worker": "serviceWorker.js"
+  },
+  "permissions": [
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "icons": {
+    "16": "images/icon-logo-json.png",
+    "48": "images/icon-logo-json.png",
+    "128": "images/icon-logo-json.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "js/content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "resources": [
+        "css/*",
+        "icons/*",
+        "images/*",
+        "js/*",
+        "packages/*",
+        "pages/*",
+        "svg/*",
+        "vendor/*"
+      ]
+    }
+  ]
+}
