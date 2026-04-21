@@ -4,7 +4,6 @@
   };
   const HOTKEY_SEQUENCE = "cc";
   const HOTKEY_TIMEOUT = 700;
-  const BRAND_ICON_URL = chrome.runtime.getURL("images/icon-logo-json.png");
 
   let hotkeyBuffer = "";
   let lastHotkeyAt = 0;
@@ -126,39 +125,6 @@
     lastHotkeyAt = 0;
   }
 
-  function unwrapLink(anchor) {
-    if (!anchor || !anchor.parentNode) {
-      return;
-    }
-
-    while (anchor.firstChild) {
-      anchor.parentNode.insertBefore(anchor.firstChild, anchor);
-    }
-    anchor.remove();
-  }
-
-  function cleanupPluginLinks(root = document) {
-    const anchors = root.querySelectorAll("a[href*='plugin.csdn.net']");
-    anchors.forEach(unwrapLink);
-
-    root.querySelectorAll(".logo-img-view img, .logo-img, img.logo").forEach((img) => {
-      img.src = BRAND_ICON_URL;
-    });
-  }
-
-  function observeBrandingCleanup() {
-    cleanupPluginLinks(document);
-
-    const observer = new MutationObserver(() => {
-      cleanupPluginLinks(document);
-    });
-
-    observer.observe(document.documentElement || document.body, {
-      childList: true,
-      subtree: true
-    });
-  }
-
   function openJsonToolPopup() {
     const url = chrome.runtime.getURL("pages/jsonPages.html");
     const width = Math.min(1200, Math.max(960, Math.floor(window.screen.availWidth * 0.75)));
@@ -215,7 +181,6 @@
   }
 
   window.addEventListener("keydown", handleSequenceHotkey, true);
-  observeBrandingCleanup();
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", tryAutoFormat, { once: true });
