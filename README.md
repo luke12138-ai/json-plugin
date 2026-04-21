@@ -1,6 +1,6 @@
 # Standalone JSON Tool
 
-This directory contains a standalone Chrome extension extracted from the JSON tool in the main CSDN browser assistant project.
+This directory contains a standalone Chrome extension extracted from the JSON tool in the original browser assistant project.
 
 ## Included capabilities
 

@@ -14,7 +14,7 @@
   }
 
   function cleanupPluginLinks(root = document) {
-    const anchors = root.querySelectorAll(`${TOOLBAR_SELECTOR} a[href*='plugin.csdn.net']`);
+    const anchors = root.querySelectorAll(`${TOOLBAR_SELECTOR} .logo-img-view a`);
     anchors.forEach(unwrapLink);
 
     root.querySelectorAll(`${TOOLBAR_SELECTOR} .logo-img-view img`).forEach((img) => {
